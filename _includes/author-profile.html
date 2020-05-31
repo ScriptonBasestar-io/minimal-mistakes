@@ -7,16 +7,19 @@
     <div class="author__avatar">
       {% if author.home %}
         <a href="{{ author.home | relative_url }}">
-          <img src="{{ author.email | to_gravatar }}" alt="{{ author.name }}" itemprop="image">
+          <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" itemprop="image">
         </a>
       {% else %}
-        <img src="{{ author.email | to_gravatar }}" alt="{{ author.name }}" itemprop="image">
+        <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" itemprop="image">
       {% endif %}
     </div>
+  {% else %}
+  <div class="author__avatar">
+    <img src="{{ author.email | to_gravatar }}" alt="{{ author.name }}" itemprop="image">
+  </div>
   {% endif %}
 
   <div class="author__content">
-    <img src="{{ author.email | to_gravatar }}" alt="{{ author.name }}" itemprop="image">
     {% if author.home %}
       <a href="{{ author.home | relative_url }}"><h3 class="author__name" itemprop="name">{{ author.name }}</h3></a>
     {% else %}
