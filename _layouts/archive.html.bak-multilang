@@ -20,10 +20,24 @@ layout: default
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
       <h1 id="page-title" class="page__title">{{ page.title }}</h1>
-
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-
     {% endunless %}
+    
+    <div class="post">
+      <div align="right">
+        {% for lang in site.languages %}
+          {% unless site.lang == lang %}
+            <a href="{% tl {{ page.namespace }} {{ lang }} %}" >{% t langs.{{ lang }} %}</a>
+            
+            {% assign next = forloop.index | plus: 1 %}
+            
+            {% if forloop.last != true and site.languages[forloop.index] != site.lang or site.languages[forloop.index] == site.lang and next < forloop.length %}
+              <span class="separator"> &bull; </span>
+            {% endif %}
+            
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
 
     {{ content }}
   </div>
